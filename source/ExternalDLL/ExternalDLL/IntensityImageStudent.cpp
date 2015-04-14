@@ -1,9 +1,14 @@
 #include "IntensityImageStudent.h"
+#include <iostream>
 
 IntensityImageStudent::IntensityImageStudent() : IntensityImage() {
 }
 
 IntensityImageStudent::IntensityImageStudent(const IntensityImageStudent &other) : IntensityImage() {
+	set(other);
+}
+
+IntensityImageStudent::IntensityImageStudent(const RGBImage &other) : IntensityImage() {
 	set(other);
 }
 
@@ -37,9 +42,38 @@ void IntensityImageStudent::set(const IntensityImageStudent &other) {
 	delete pixMap;
 	IntensityImage::set(other.getWidth(), other.getHeight());
 
+	int width = other.getWidth();
+	int height = other.getHeight();
+	pixMap = new Intensity*[width];
+	for (int x = 0; x < width; x++){
+		pixMap[x] = new Intensity[height];
+	}
+
 	for (int x = 0; x < getWidth(); x++){
 		for (int y = 0; y < getHeight(); y++){
 			pixMap[x][y] = other.getPixel(x, y);
+		}
+	}
+}
+
+void IntensityImageStudent::set(const RGBImage &other) {
+	for (int x = 0; x < getWidth(); x++){
+		delete pixMap[x];
+	}
+	delete pixMap;
+	IntensityImage::set(other.getWidth(), other.getHeight());
+
+	int width = other.getWidth();
+	int height = other.getHeight();
+	pixMap = new Intensity*[width];
+	for (int x = 0; x < width; x++){
+		pixMap[x] = new Intensity[height];
+	}
+
+	for (int x = 0; x < getWidth(); x++){
+		for (int y = 0; y < getHeight(); y++){
+			RGB rgb = other.getPixel(x, y);
+			pixMap[x][y] = (2*rgb.r + 5*rgb.g)/7;
 		}
 	}
 }

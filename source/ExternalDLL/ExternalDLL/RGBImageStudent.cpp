@@ -38,6 +38,13 @@ void RGBImageStudent::set(const RGBImageStudent &other) {
 	delete pixMap;
 	RGBImage::set(other.getWidth(), other.getHeight());
 
+	int width = other.getWidth();
+	int height = other.getHeight();
+	pixMap = new RGB*[width];
+	for (int x = 0; x < width; x++){
+		pixMap[x] = new RGB[height];
+	}
+
 	for (int x = 0; x < getWidth(); x++){
 		for (int y = 0; y < getHeight(); y++){
 			pixMap[x][y] = other.getPixel(x, y);

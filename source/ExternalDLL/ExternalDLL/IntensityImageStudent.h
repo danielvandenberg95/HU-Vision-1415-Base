@@ -6,15 +6,18 @@
 
 #pragma once
 #include "IntensityImage.h"
+#include "RGBImage.h"
 class IntensityImageStudent : public IntensityImage {
 public:
 	IntensityImageStudent();
 	IntensityImageStudent(const IntensityImageStudent &other);
+	IntensityImageStudent(const RGBImage &other);
 	IntensityImageStudent(const int width, const int height);
 	~IntensityImageStudent();
 
 	void set(const int width, const int height);
 	void set(const IntensityImageStudent &other);
+	void set(const RGBImage &other);
 
 	void setPixel(int x, int y, Intensity pixel);
 	void setPixel(int i, Intensity pixel);
