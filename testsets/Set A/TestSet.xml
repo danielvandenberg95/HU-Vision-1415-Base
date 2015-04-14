@@ -140,4 +140,24 @@
       <double>3.4615384615384617</double>
     </Parameters>
   </name>
+  <name Name="1" ImagePath="TestSet Images\1.png">
+    <Parameters>
+      <double>2.89129219025569</double>
+      <double>0.42266096371611267</double>
+      <double>0.62248382810579062</double>
+      <double>0</double>
+      <double>1.2605504373315628</double>
+      <double>0.87069257559417335</double>
+      <double>1.0407032486296761</double>
+      <double>2.8844904143938952</double>
+      <double>0.55207268304598023</double>
+      <double>0.065922830281641642</double>
+      <double>1.2674799229249549</double>
+      <double>0.36616086662276476</double>
+      <double>0.39533174375954017</double>
+      <double>0.64782307171719922</double>
+      <double>1.5952611209968222</double>
+      <double>3.4615384615384617</double>
+    </Parameters>
+  </name>
 </TestSetFile>
