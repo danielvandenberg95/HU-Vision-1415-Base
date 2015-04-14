@@ -15,8 +15,8 @@ bool executeSteps(DLLExecution * executor);
 
 int main(int argc, char * argv[]) {
 
-	ImageFactory::setImplementation(ImageFactory::DEFAULT);
-	//ImageFactory::setImplementation(new ImageFactory::ImplementationStudent());
+	//ImageFactory::setImplementation(ImageFactory::DEFAULT);
+	ImageFactory::setImplementation(ImageFactory::STUDENT/* ImageFactory::ImplementationStudent()*/);
 
 
 	ImageIO::debugFolder = "D:\\Users\\Rolf\\Downloads\\FaceMinMin";
@@ -26,7 +26,7 @@ int main(int argc, char * argv[]) {
 
 
 	RGBImage * input = ImageFactory::newRGBImage();
-	if (!ImageIO::loadImage("D:\\Users\\Rolf\\Downloads\\TestA5.jpg", *input)) {
+	if (!ImageIO::loadImage("C:\\Users\\Daniel\\Desktop\\GitHub\\HU-Vision-1415-Base\\testsets\\Set A\\TestSet Images\\child-1.png", *input)) {
 		std::cout << "Image could not be loaded!" << std::endl;
 		system("pause");
 		return 0;
@@ -63,7 +63,7 @@ int main(int argc, char * argv[]) {
 bool executeSteps(DLLExecution * executor) {
 
 	//Execute the four Pre-processing steps
-	if (!executor->executePreProcessingStep1(false)) {
+	if (!executor->executePreProcessingStep1(true)) {
 		std::cout << "Pre-processing step 1 failed!" << std::endl;
 		return false;
 	}

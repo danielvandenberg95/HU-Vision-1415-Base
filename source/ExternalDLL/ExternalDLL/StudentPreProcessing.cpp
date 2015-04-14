@@ -1,8 +1,14 @@
 #include "StudentPreProcessing.h"
-
+#include "GrayscaleAlgorithm.h"
+#include "ImageFactory.h"
+#include <iostream>
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
-	return nullptr;
+	GrayscaleAlgorithm grayScaleAlgorithm;
+	IntensityImage * ret = ImageFactory::newIntensityImage();
+	grayScaleAlgorithm.doAlgorithm(image, *ret);
+	std::cout << "YAYA!!ALjDLFJSHDF\n";
+	return ret;
 }
 
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
