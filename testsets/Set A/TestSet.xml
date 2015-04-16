@@ -160,4 +160,64 @@
       <double>3.4615384615384617</double>
     </Parameters>
   </name>
+  <name Name="pieter" ImagePath="TestSet Images\pieter.png">
+    <Parameters>
+      <double>1.6975795759077246</double>
+      <double>0.52072061875978459</double>
+      <double>0.75578422907522758</double>
+      <double>0</double>
+      <double>1.2712323546039377</double>
+      <double>1.0608567512899105</double>
+      <double>0.335981585795116</double>
+      <double>2.0860814563660237</double>
+      <double>0.3936772507401517</double>
+      <double>0.16456037229003592</double>
+      <double>0.81172205813137222</double>
+      <double>0.19798098978813958</double>
+      <double>0.21867715067500659</double>
+      <double>1.1482897407712096</double>
+      <double>1.8038531011040491</double>
+      <double>4.1</double>
+    </Parameters>
+  </name>
+  <name Name="abba" ImagePath="TestSet Images\abba.png">
+    <Parameters>
+      <double>2.89129219025569</double>
+      <double>0.42266096371611267</double>
+      <double>0.62248382810579062</double>
+      <double>0</double>
+      <double>1.2548673488694762</double>
+      <double>0.87069257559417335</double>
+      <double>1.0480145087861246</double>
+      <double>2.8844904143938952</double>
+      <double>0.55207268304598023</double>
+      <double>0.065922830281641642</double>
+      <double>1.2674799229249549</double>
+      <double>0.36616086662276476</double>
+      <double>0.39533174375954017</double>
+      <double>0.64782307171719922</double>
+      <double>1.5952611209968222</double>
+      <double>3.4615384615384617</double>
+    </Parameters>
+  </name>
+  <name Name="abba" ImagePath="TestSet Images\abba1.png">
+    <Parameters>
+      <double>2.89129219025569</double>
+      <double>0.42266096371611267</double>
+      <double>0.62248382810579062</double>
+      <double>0</double>
+      <double>1.2605504373315628</double>
+      <double>0.87069257559417335</double>
+      <double>1.0407032486296761</double>
+      <double>2.8844904143938952</double>
+      <double>0.55207268304598023</double>
+      <double>0.065922830281641642</double>
+      <double>1.2674799229249549</double>
+      <double>0.36616086662276476</double>
+      <double>0.39533174375954017</double>
+      <double>0.64782307171719922</double>
+      <double>1.5952611209968222</double>
+      <double>3.4615384615384617</double>
+    </Parameters>
+  </name>
 </TestSetFile>
