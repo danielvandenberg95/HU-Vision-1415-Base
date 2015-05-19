@@ -34,7 +34,7 @@ bool StudentLocalization::stepFindHead(const IntensityImage &image, FeatureMap &
 	}
 
 	{//Left and right
-		int top = topOfHead.getY();
+		/*int top = topOfHead.getY();
 		int bottom = top + imageHeight / 2;
 		int testPoints = 32;
 		int testDivision = imageHeight / 2 / (testPoints - 1);
@@ -65,7 +65,16 @@ bool StudentLocalization::stepFindHead(const IntensityImage &image, FeatureMap &
 		}
 		if (!leftFound || !rightFound){
 			return false;
+		}*/
+		int * black = new int[image.getHeight()];
+		int * white = new int[image.getHeight()];
+		for (int y = 0; y < image.getHeight(); y++){
+			for (int x = 0; x < image.getWidth(); x++){
+				(image.getPixel(x, y) == 0 ? black : white)[y]++;
+			}
+			rightOfHead.addPoint(Point2D<double>(black[y], y));
 		}
+
 	}
 
 	features.putFeature(topOfHead);
