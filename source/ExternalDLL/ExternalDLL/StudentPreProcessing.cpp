@@ -5,6 +5,7 @@
 #include <iostream>
 #include "basetimer.h"
 #include <fstream>
+#include <algorithm>
 
 IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &image) const {
 	BaseTimer baseTimer;
@@ -19,7 +20,27 @@ IntensityImage * StudentPreProcessing::stepToIntensityImage(const RGBImage &imag
 }
 
 IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &image) const {
-	return nullptr;
+#define NEWSIZE 200.0f
+	double scale = std::max(image.getWidth() / NEWSIZE, image.getHeight() / NEWSIZE);
+	IntensityImage* result = ImageFactory::newIntensityImage(image.getWidth() / scale, image.getHeight() / scale);
+	for (int x = 0; x < (image.getWidth() / scale) - 1; x++){
+		for (int y = 0; y < (image.getHeight() / scale) - 1; y++){
+			double oldX = x * scale, oldY = y * scale;
+			if (oldX < 0 || oldY < 0 || oldX >= image.getWidth() - 1 || oldY >= image.getHeight() - 1){
+				result->setPixel(x,y, 0);
+				continue;
+			}
+			float v00 = image.getPixel(oldX, oldY);
+			float v01 = image.getPixel(oldX, oldY + 1);
+			float v10 = image.getPixel(oldX + 1, oldY);
+			float v11 = image.getPixel(oldX + 1, oldY + 1);
+			#define t0 ((std::ceil(oldX) - oldX) * v00 + (oldX - std::floor(oldX)) * v10);
+			#define t1 ((std::ceil(oldX) - oldX) * v01 + (oldX - std::floor(oldX)) * v11);
+			float res = (std::ceil(oldY) - oldY) * t0 + (oldY - std::floor(oldY)) * t1;
+			result->setPixel(x, y, v00);
+		}
+	}
+	return result;
 }
 
 IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &image) const {
