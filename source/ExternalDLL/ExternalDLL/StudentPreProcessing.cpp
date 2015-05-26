@@ -25,15 +25,15 @@ IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &imag
 IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &image) const {
 	const int size = 9;
 	const int halfSize = floor(size / 2.0f);
-	/*int mask[9][9] = { { 0, 0, 0, -1, -1, -1, 0, 0, 0 },
-	{ 0, 0, 0, -1, -1, -1, 0, 0, 0 },
-	{ 0, 0, 0, -1, -1, -1, 0, 0, 0 },
-	{ -1, -1, -1, 4, 4, 4, -1, -1, -1 },
-	{ -1, -1, -1, 4, 4, 4, -1, -1, -1 },
-	{ -1, -1, -1, 4, 4, 4, -1, -1, -1 },
-	{ 0, 0, 0, -1, -1, -1, 0, 0, 0 },
-	{ 0, 0, 0, -1, -1, -1, 0, 0, 0 },
-	{ 0, 0, 0, -1, -1, -1, 0, 0, 0 } };*/
+	int mask[9][9] = { { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+	{ 1, 1, 1, -4, -4, -4, 1, 1, 1 },
+	{ 1, 1, 1, -4, -4, -4, 1, 1, 1 },
+	{ 1, 1, 1, -4, -4, -4, 1, 1, 1 },
+	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+	{ 0, 0, 0, 1, 1, 1, 0, 0, 0 } };
 
 	float z = -0.125;
 	float a = -0.25;
@@ -43,7 +43,7 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 	float e = -1.25;
 	float f = -1;
 
-	float mask[9][9] = { 
+	/*float mask[9][9] = { 
 	{ 0, 0, z, c, b, c, z, 0, 0 },
 	{ 0, z, a, b, e, b, a, z, 0 },
 	{ z, a, c, d, f, d, c, a, z },
@@ -52,7 +52,7 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 	{ c, b, d, 2.25, 3.75, 2.25, d, b, c },
 	{ z, a, c, d, f, d, c, a, z },
 	{ 0, z, a, b, e, b, a, z, 0 },
-	{ 0, 0, z, c, b, c, z, 0, 0 } };
+	{ 0, 0, z, c, b, c, z, 0, 0 } };*/
 
 	//int mask[3][3] = { { 0, 1, 0 }, { 1, -4, 1 }, { 0, 1, 0 } };
 	//float mask[3][3] = { { 0, 0.5, 0 }, { 0.5, -2, 0.5 }, { 0, 0.5, 0 } };
@@ -80,15 +80,15 @@ IntensityImage * StudentPreProcessing::stepEdgeDetection(const IntensityImage &i
 
 	for (int x = 0; x < image.getWidth(); x++){
 		for (int y = 0; y < halfSize; y++){
-			res->setPixel(x, y, 255);
-			res->setPixel(x, image.getHeight() - y - 1, 255);
+			res->setPixel(x, y, 0);
+			res->setPixel(x, image.getHeight() - y - 1, 0);
 		}
 	}
 
 	for (int y = 0; y < image.getHeight(); y++){
 	for (int x = 0; x < halfSize; x++){
-			res->setPixel(x, y, 255);
-			res->setPixel(image.getWidth() - x - 1,y, 255);
+			res->setPixel(x, y, 0);
+			res->setPixel(image.getWidth() - x - 1,y, 0);
 		}
 	}
 	return res;
@@ -102,7 +102,7 @@ IntensityImage * StudentPreProcessing::stepThresholding(const IntensityImage &im
 	for (int x = 0; x < image.getWidth(); x++){
 		for (int y = 0; y < image.getHeight(); y++){
 
-			int value = 255 - 255 * (image.getPixel(x, y) <255);
+			int value = 255 * (image.getPixel(x, y) <255);
 
 			res->setPixel(x, y, value);
 		}
