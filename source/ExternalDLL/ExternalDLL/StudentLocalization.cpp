@@ -1,7 +1,7 @@
 #include "StudentLocalization.h"
 
 bool StudentLocalization::stepFindHead(const IntensityImage &image, FeatureMap &features) const {
-	Feature topOfHead = Feature(Feature::FEATURE_HEAD_TOP);
+	/*Feature topOfHead = Feature(Feature::FEATURE_HEAD_TOP);
 	Feature leftOfHead = Feature(Feature::FEATURE_HEAD_LEFT_SIDE);
 	Feature rightOfHead = Feature(Feature::FEATURE_HEAD_RIGHT_SIDE);
 
@@ -65,7 +65,7 @@ bool StudentLocalization::stepFindHead(const IntensityImage &image, FeatureMap &
 		}
 		if (!leftFound || !rightFound){
 			return false;
-		}*/
+		}
 		int * black = new int[image.getHeight()];
 		int * white = new int[image.getHeight()];
 		for (int y = 0; y < image.getHeight(); y++){
@@ -80,7 +80,8 @@ bool StudentLocalization::stepFindHead(const IntensityImage &image, FeatureMap &
 	features.putFeature(topOfHead);
 	features.putFeature(leftOfHead);
 	features.putFeature(rightOfHead);
-	return true;
+	return true;*/
+	return false;
 }
 
 bool StudentLocalization::stepFindNoseMouthAndChin(const IntensityImage &image, FeatureMap &features) const {
@@ -88,7 +89,34 @@ bool StudentLocalization::stepFindNoseMouthAndChin(const IntensityImage &image, 
 }
 
 bool StudentLocalization::stepFindChinContours(const IntensityImage &image, FeatureMap &features) const {
-	return false;
+	
+	# define PI         3.141592653589793238462643383279502884L
+	#define VerticalOffset 8
+	Point2D<double> MouthCenter = features.getFeature(Feature::FEATURE_MOUTH_CENTER).getPoints()[0];
+	int ThoroughBushThoroughBrier = (int) (features.getFeature(Feature::FEATURE_CHIN).getY() - features.getFeature(Feature::FEATURE_MOUTH_CENTER).getY());
+	int OverParkOverPale = ThoroughBushThoroughBrier * 2;
+	int ThoroughFloodThoroughFire = (int) (ThoroughBushThoroughBrier * 0.75);
+	
+	Feature chinCountor = Feature(Feature::FEATURE_CHIN_CONTOUR);
+	
+	for(int i = 0; i < 19; i++)
+	{
+		bool pointFound = false;
+		int x = MouthCenter.x;
+		int y = MouthCenter.y;
+		int j = 0;
+		while (x > features.getFeature(Feature::FEATURE_HEAD_LEFT_SIDE).getX() && x < features.getFeature(Feature::FEATURE_HEAD_RIGHT_SIDE).getX() && y > 0 && y < features.getFeature(Feature::FEATURE_CHIN).getY() && !pointFound){
+			x = (int) std::round(MouthCenter.x + (j * std::sin((270 + (10*i)) * (PI/180))));
+			y = (int)std::round(MouthCenter.y + VerticalOffset + (j * std::cos((270 + (10 * i)) * (PI / 180))));
+			if(image.getPixel(x,y) == 0){
+				pointFound = true;
+				chinCountor.addPoint(Point2D<double>(x, y));
+			}
+			j++;
+		}
+	}
+	features.putFeature(chinCountor);
+	return true;
 }
 
 bool StudentLocalization::stepFindNoseEndsAndEyes(const IntensityImage &image, FeatureMap &features) const {
