@@ -91,12 +91,8 @@ bool StudentLocalization::stepFindNoseMouthAndChin(const IntensityImage &image, 
 bool StudentLocalization::stepFindChinContours(const IntensityImage &image, FeatureMap &features) const {
 	
 	# define PI         3.141592653589793238462643383279502884L
-	#define VerticalOffset 8
+	#define VerticalOffset 10
 	Point2D<double> MouthCenter = features.getFeature(Feature::FEATURE_MOUTH_CENTER).getPoints()[0];
-	int ThoroughBushThoroughBrier = (int) (features.getFeature(Feature::FEATURE_CHIN).getY() - features.getFeature(Feature::FEATURE_MOUTH_CENTER).getY());
-	int OverParkOverPale = ThoroughBushThoroughBrier * 2;
-	int ThoroughFloodThoroughFire = (int) (ThoroughBushThoroughBrier * 0.75);
-	
 	Feature chinCountor = Feature(Feature::FEATURE_CHIN_CONTOUR);
 	
 	for(int i = 0; i < 19; i++)
