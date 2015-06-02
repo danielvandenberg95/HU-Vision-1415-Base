@@ -23,8 +23,8 @@ IntensityImage * StudentPreProcessing::stepScaleImage(const IntensityImage &imag
 #define NEWSIZE 200.0f
 	double scale = std::max(image.getWidth() / NEWSIZE, image.getHeight() / NEWSIZE);
 	IntensityImage* result = ImageFactory::newIntensityImage(image.getWidth() / scale, image.getHeight() / scale);
-	for (int x = 0; x < (image.getWidth() / scale) - 1; x++){
-		for (int y = 0; y < (image.getHeight() / scale) - 1; y++){
+	for (int x = 0; x < (image.getWidth() / scale); x++){
+		for (int y = 0; y < (image.getHeight() / scale); y++){
 			double oldX = x * scale, oldY = y * scale;
 			if (oldX < 0 || oldY < 0 || oldX >= image.getWidth() - 1 || oldY >= image.getHeight() - 1){
 				result->setPixel(x,y, 0);
